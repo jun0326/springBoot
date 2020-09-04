@@ -24,7 +24,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/get", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/selectByName", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public RespEntity selectByUserName(@RequestBody ReqUser reqUser) {
         System.out.println(reqUser);
         List<User> users = userService.selectByUserName(reqUser);
@@ -35,5 +35,10 @@ public class UserController {
     public User selectByPrimaryKey(@PathVariable("id") Integer id) {
 
         return userService.selectByPrimaryKey(id);
+    }
+
+    @RequestMapping(value = "/selectByUserName/{userName}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    public User selectByUserName(@PathVariable("userName") String userName) {
+        return new User();
     }
 }
