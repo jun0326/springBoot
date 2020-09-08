@@ -23,6 +23,19 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true
     maxOpenPreparedStatements: 20
+  #配置redis连接信息
+  redis:
+  host: 127.0.0.1
+  port: 6379
+  password:
+      jedis:
+        pool:
+          max-active: 8
+          max-wait: -1
+          max-idle: 500
+          min-idle: 0
+      lettuce:
+        shutdown-timeout: 0
 
 # mybatis节点为独立的节点
 mybatis:
@@ -30,5 +43,7 @@ mybatis:
   type-aliases-package: cn.jun.entity # 实体类中的包
   configuration:
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 控制台打印日志
+
+
 
 

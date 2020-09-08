@@ -77,9 +77,7 @@ public class UserTest {
 
         int status = mvcResult.getResponse().getStatus();
         String contentAsString = mvcResult.getResponse().getContentAsString();
-
         Assert.assertTrue("正确",status == 200);
-        Assert.assertTrue("错误",status != 200);
     }
 
     /**
@@ -99,7 +97,7 @@ public class UserTest {
     }
 
     /**
-     * 请求数据时json格式
+     * 带json格式的post请求
      */
     @Test
     public void test03() throws Exception {
@@ -117,9 +115,31 @@ public class UserTest {
 
         int status = mvcResult.getResponse().getStatus();
         String contentAsString = mvcResult.getResponse().getContentAsString();
-
         Assert.assertTrue("正确",status == 200);
 
+    }
+
+
+    /**
+     * 带json格式的get请求
+     * @throws Exception
+     */
+    @Test
+    public void test04() throws Exception {
+        Map<String,Object> map = new HashMap();
+        map.put("userId",1000);
+        map.put("userNmae","jun");
+
+        String json = JSON.toJSONString(map);
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/user/selectByPrimaryKey")
+                .contentType(MediaType.APPLICATION_JSON_UTF8).content(json);
+        MvcResult mvcResult = mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk())
+                .andDo(MockMvcResultHandlers.print()).andReturn();
+
+        int status = mvcResult.getResponse().getStatus();
+        String contentAsString = mvcResult.getResponse().getContentAsString();
+        Assert.assertTrue("正确",status == 200);
     }
 
 }

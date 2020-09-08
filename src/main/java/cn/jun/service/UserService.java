@@ -16,5 +16,5 @@ public interface UserService {
     List<User> selectByUserName(ReqUser reqUser);
 
 
-    User selectByPrimaryKey(Integer userId);
+    User selectByPrimaryKey(ReqUser reqUser);
 }

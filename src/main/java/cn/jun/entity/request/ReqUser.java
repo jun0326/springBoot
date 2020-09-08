@@ -1,5 +1,6 @@
 package cn.jun.entity.request;
 
+import cn.jun.entity.User;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,53 +13,40 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReqUser {
 
-    private Integer userId;
+    private Sign sign;
 
-    private String userName;
+    private User req;
 
-    private String password;
+    public ReqUser(){
 
-    private String phone;
-
-    public Integer getUserId() {
-        return userId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public ReqUser(Sign sign, User user) {
+        this.sign = sign;
+        this.req = user;
     }
 
-    public String getUserName() {
-        return userName;
+    public Sign getSign() {
+        return sign;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setSign(Sign sign) {
+        this.sign = sign;
     }
 
-    public String getPassword() {
-        return password;
+    public User getReq() {
+        return req;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
+    public void setReq(User req) {
+        this.req = req;
     }
 
     @Override
     public String toString() {
         return "ReqUser{" +
-                "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", phone='" + phone + '\'' +
+                "sign=" + sign +
+                ", req=" + req +
                 '}';
     }
 }
